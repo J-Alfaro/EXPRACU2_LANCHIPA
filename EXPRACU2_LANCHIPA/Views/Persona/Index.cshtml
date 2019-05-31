@@ -1,0 +1,57 @@
+﻿@model List<EXPRACU2_LANCHIPA.Models.Persona>
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h3 class="page-title">Lista de Personas</h3>
+    </div>
+    <div class="col-sm-8 col-9 text-right m-b-20">
+        <div class="form-check form-check-inline">
+            <a href="~/Persona/AgregarEditar" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Nuevo Registro</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table id="example" class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombres y Apellidos</th>
+                    <th>Sexo</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Edad</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-right">Accción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                <tr>
+                    <td>@(s.persona_id)</td>
+                    <td>@(s.nombre)</td>
+                    <td>@(s.sexo)</td>
+                    <td>@(s.fecha_nac)</td>
+                    <td>41</td>
+                    <td>@(s.email)</td>
+                    <td>@(s.direccion)</td>
+                    <td>@(s.estado == "A" ? "Activo" : "Inactivo")</td>                    
+                    <td style="text-align:center;">
+                        <a href="~/Persona/Visualizar/@s.persona_id" class="btn btn-xs btn-warning">Visualizar</a>
+                        <a href="~/Persona/AgregarEditar/@s.persona_id" class="btn btn-xs btn-primary">Modificar</a>
+                        <a href="~/Persona/Eliminar/@s.persona_id" class="btn btn-xs btn-danger" onclick="return confirm('¿Estas seguro qu desea eliminar?');">Eliminar</a>
+                    </td>
+                </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

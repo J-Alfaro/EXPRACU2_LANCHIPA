@@ -1,0 +1,88 @@
+﻿@model EXPRACU2_LANCHIPA.Models.Persona
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Agregar / Editar Perosna</h4>
+    </div>
+</div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="~/Persona/Index">Persona</a>
+        </li>
+        <li class="breadcrumb-item" active>
+            @(Model.persona_id > 0 ? Model.nombre : "Nuevo Registro")
+        </li>
+    </ol>
+</nav>
+<div class="container">
+    @using (Html.BeginForm("Guardar", "Persona", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.persona_id)
+        <div class="form-group row">
+            @Html.Label("Id", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.persona_id, new { @class = "form-control", disabled = true })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Nombres", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.nombre, new { @class = "form-control", placeholder = "Nombres", required = "required" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Apellidos", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.apellido, new { @class = "form-control", placeholder = "Apellidos", required = "required" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Sexo", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group  col-sm-10">
+                Masculino
+                @Html.RadioButtonFor(x => x.sexo, "True")
+                Femenino
+                @Html.RadioButtonFor(x => x.sexo, "False")
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Fecha Nacimiento", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.fecha_nac, new { @class = "form-control", type = "date", required = "required" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Email", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control", placeholder = "Email", type = "email", required = "required" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Direccion (Opcional)", new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.direccion, new { @class = "form-control", placeholder = "Direccion" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.Label("Estado", new { @class = "col-sm-2 col-form-label" })
+            <select class="form-control col-sm-10">
+                <option @(Model.estado == "" ? "Selected" : "") value="">-Seleccione-</option>
+                <option @(Model.estado == "A" ? "Selected" : "") value="A">Activo</option>
+                <option @(Model.estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="form-check form-check-inline">
+                <a href="~/Semestre/Index" class="btn btn btn-outline-primary btn-rounded" style='width:100px; height:35px'> Cancelar</a>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="submit" value="Guardar" class="btn btn btn-primary btn-rounded" style='width:100px; height:35px' />
+            </div>
+        </div>
+
+    }
+</div>
+<br /><br />
+
